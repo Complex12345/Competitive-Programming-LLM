@@ -1,29 +1,27 @@
-import time
-import json
-import subprocess
 from kaggle.api.kaggle_api_extended import KaggleApi
+import time
+import subprocess
 import sys
 
-NOTEBOOK_PATH = "notebook.ipynb"  # replace with your notebook filename
+OWNER_SLUG = "nlmbu5"
+KERNEL_SLUG = "my-notebook"
 OUTPUT_PATH = "output_notebook.ipynb"
-KERNEL_REF = "nlmbu5/my-notebook"
 TEST_CASE = sys.argv[1] if len(sys.argv) > 1 else "default"
 
-# Authenticate Kaggle
 api = KaggleApi()
 api.authenticate()
 
-# Poll until kernel finishes
-status = api.kernel_status(KERNEL_REF)
+# Poll until the kernel finishes
+status = api.kernels_status(owner_slug=OWNER_SLUG, kernel_slug=KERNEL_SLUG)
 while status['status'] in ('running', 'pending'):
     print(f"Current status: {status['status']}")
     time.sleep(5)
-    status = api.kernel_status(KERNEL_REF)
+    status = api.kernels_status(owner_slug=OWNER_SLUG, kernel_slug=KERNEL_SLUG)
 
 print(f"Kernel finished with status: {status['status']}")
 
 # Download notebook output
-api.kernels_output(kernel=KERNEL_REF, path=".", force=True)
+api.kernels_output(owner_slug=OWNER_SLUG, kernel_slug=KERNEL_SLUG, path=".", force=True)
 print(f"Downloaded output to {OUTPUT_PATH}")
 
 # Run analysis
