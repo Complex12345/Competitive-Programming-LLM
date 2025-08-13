@@ -1,0 +1,10 @@
+{
+  "id": "nlmbu5/is-prime-notebook",
+  "title": "My Notebook",
+  "code_file": "is_prime.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "enable_gpu": true,
+  "gpu_type": "T4",
+  "is_private": true
+}
