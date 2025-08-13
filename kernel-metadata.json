@@ -1,5 +1,5 @@
 {
-  "id": "nlmbu5/is-prime-notebook",
+  "id": "nlmbu5/my-notebook",
   "title": "My Notebook",
   "code_file": "is_prime.ipynb",
   "language": "python",
@@ -8,3 +8,4 @@
   "gpu_type": "T4",
   "is_private": true
 }
+
